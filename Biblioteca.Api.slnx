@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="src/Biblioteca.Api/Biblioteca.Api.csproj" Id="6d4c6d6e-6b3e-4d65-9c4f-2a5e3b2a9f11" />
+  <Project Path="src/Biblioteca.Application/Biblioteca.Application.csproj" Id="3fc0dc60-c4db-4df1-b76b-e4143a97d888" />
+  <Project Path="src/Biblioteca.Domain/Biblioteca.Domain.csproj" Id="9a0b93ca-5d3a-41b4-9723-2dd7030914f8" />
+  <Project Path="src/Biblioteca.Infrastructure/Biblioteca.Infrastructure.csproj" Id="d17bbee8-5c15-4d75-bc36-d4a044d5c4b7" />
+  <Project Path="tests/Biblioteca.IntegrationTests/Biblioteca.IntegrationTests.csproj" Id="0f68866b-a6e6-4fa3-8f54-0f91ee9d6e8b" />
+  <Project Path="tests/Biblioteca.UnitTests/Biblioteca.UnitTests.csproj" Id="c2a3402b-46f4-4cc2-93f0-c6674a8e5085" />
+</Solution>
