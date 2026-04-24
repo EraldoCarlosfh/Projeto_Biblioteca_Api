@@ -1,11 +1,9 @@
-﻿using Biblioteca.Application.Interfaces;
-using Biblioteca.Domain.Entities;
+﻿using Biblioteca.Domain.Entities;
 using Biblioteca.Domain.Repositories;
 using Biblioteca.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
