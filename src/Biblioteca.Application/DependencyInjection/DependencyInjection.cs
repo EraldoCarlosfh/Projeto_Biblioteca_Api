@@ -9,6 +9,7 @@ namespace Biblioteca.Application.DependencyInjection
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IBookLoanService, BookLoanService>();
+            services.AddScoped<IBookService, BookService>();
 
             return services;
         }
