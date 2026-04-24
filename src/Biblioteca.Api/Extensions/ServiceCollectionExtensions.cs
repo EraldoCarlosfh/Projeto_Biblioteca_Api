@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Application.DependencyInjection;
 using Biblioteca.Infrastructure.DependencyInjection;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -13,6 +14,9 @@ namespace Biblioteca.Api.Extensions
             IConfiguration configuration)
         {
             services.AddControllers();
+
+            services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationClientsideAdapters();
 
             services.AddApplication();
             services.AddInfrastructure(configuration);

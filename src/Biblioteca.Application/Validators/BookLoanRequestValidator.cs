@@ -4,7 +4,7 @@ using System;
 
 namespace Biblioteca.Application.Validators
 {
-    internal class BookLoanRequestValidator : AbstractValidator<BookLoanRequest>
+    public class BookLoanRequestValidator : AbstractValidator<BookLoanRequest>
     {
         public BookLoanRequestValidator()
         {

@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Biblioteca.Application.Validators
 {
-    internal class CreateBookRequestValidator : AbstractValidator<CreateBookRequest>
+    public class CreateBookRequestValidator : AbstractValidator<CreateBookRequest>
     {
         public CreateBookRequestValidator()
         {
