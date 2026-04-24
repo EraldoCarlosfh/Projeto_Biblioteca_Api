@@ -35,7 +35,7 @@ namespace Biblioteca.Application.Services
             if (book is null)
                 throw new NotFoundException("Livro não encontrado.");
 
-            book.PickBook();
+            book.BorrowBook();
 
             var bookLoan = new BookLoan(book.Id);
 
@@ -80,8 +80,8 @@ namespace Biblioteca.Application.Services
             if (book is null)
                 throw new NotFoundException("Livro vinculado ao empréstimo não encontrado.");
 
-            bookLoan.Deliver();
-            book.DeliverBook();
+            bookLoan.Return();
+            book.ReturnBook();
 
             await _bookLoanRepository.SaveChangeAsync(cancellationToken);
 

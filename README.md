@@ -121,6 +121,7 @@ Exemplo:
 ### 4. Aplicar migrations
 
 ```bash
+dotnet tool run dotnet-ef ou 
 dotnet ef database update \
 --project src/Biblioteca.Infrastructure \
 --startup-project src/Biblioteca.Api

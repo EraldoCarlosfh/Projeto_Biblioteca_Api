@@ -26,7 +26,7 @@ namespace Biblioteca.Domain.Entities
             QuantidadeDisponivel = quantidadeDisponivel;
         }
 
-        public void PickBook()
+        public void BorrowBook()
         {
             if (QuantidadeDisponivel <= 0)
                 throw new DomainException("Não há exemplares disponíveis para empréstimo.");
@@ -34,7 +34,7 @@ namespace Biblioteca.Domain.Entities
             QuantidadeDisponivel--;
         }
 
-        public void DeliverBook()
+        public void ReturnBook()
         {
             QuantidadeDisponivel++;
         }

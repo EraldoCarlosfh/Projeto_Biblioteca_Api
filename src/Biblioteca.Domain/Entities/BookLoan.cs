@@ -29,7 +29,7 @@ namespace Biblioteca.Domain.Entities
             Status = StatusBookEnum.Ativo;
         }
 
-        public void Deliver()
+        public void Return()
         {
             if (Status == StatusBookEnum.Devolvido)
                 throw new DomainException("Não é possível devolver um empréstimo já devolvido.");
