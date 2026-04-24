@@ -29,7 +29,7 @@ namespace Biblioteca.Application.Services
             CancellationToken cancellationToken)
         {
             var book = await _bookRepository.GetByIdAsync(
-                request.LivroId,
+                (Guid)request.LivroId,
                 cancellationToken);
 
             if (book is null)

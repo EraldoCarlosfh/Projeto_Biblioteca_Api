@@ -4,6 +4,6 @@ namespace Biblioteca.Application.DTOs
 {
     public class BookLoanRequest
     {
-        public Guid LivroId { get; set; }
+        public Guid? LivroId { get; set; }
     }
 }

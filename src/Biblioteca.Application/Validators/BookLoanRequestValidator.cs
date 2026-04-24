@@ -9,8 +9,8 @@ namespace Biblioteca.Application.Validators
         public BookLoanRequestValidator()
         {
             RuleFor(x => x.LivroId)
-                .NotEqual(Guid.Empty)
-                .WithMessage("LivroId é obrigatório.");
+                .NotNull().WithMessage("LivroId é obrigatório.")
+                .NotEqual(Guid.Empty).WithMessage("LivroId é obrigatório.");
         }
     }
 }
