@@ -1,6 +1,5 @@
 ﻿using Biblioteca.Application.DTOs;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +15,8 @@ namespace Biblioteca.Application.Interfaces
             Guid id,
             CancellationToken cancellationToken);
 
-        Task<IReadOnlyList<BookDto>> ListAsync(
+        Task<PagedResult<BookDto>> ListAsync(
+            PagedRequest request,
             CancellationToken cancellationToken);
     }
 }

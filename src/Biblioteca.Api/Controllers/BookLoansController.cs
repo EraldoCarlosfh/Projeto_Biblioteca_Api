@@ -1,5 +1,6 @@
 using Biblioteca.Application.DTOs;
 using Biblioteca.Application.Interfaces;
+using Biblioteca.Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -55,12 +56,12 @@ namespace Biblioteca.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IReadOnlyList<BookLoanDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> List(CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(PagedResult<BookLoanDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> List([FromQuery] PagedRequest request, CancellationToken cancellationToken)
         {
-            var bookLoans = await _bookLoanService.ListAsync(cancellationToken);
+            var books = await _bookLoanService.ListAsync(request, cancellationToken);
 
-            return Ok(bookLoans);
+            return Ok(books);
         }
 
         [HttpGet("{id:guid}")]

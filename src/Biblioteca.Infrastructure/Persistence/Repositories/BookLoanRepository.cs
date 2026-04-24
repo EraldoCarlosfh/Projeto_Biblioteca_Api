@@ -34,12 +34,21 @@ namespace Biblioteca.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
+        public async Task<int> CountAsync(CancellationToken cancellationToken)
+        {
+            return await _context.Emprestimos.CountAsync(cancellationToken);
+        }
+
         public async Task<IReadOnlyList<BookLoan>> ListAsync(
+            int page,
+            int pageSize,
             CancellationToken cancellationToken)
         {
             return await _context.Emprestimos
                 .AsNoTracking()
                 .OrderByDescending(x => x.DataEmprestimo)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync(cancellationToken);
         }
 

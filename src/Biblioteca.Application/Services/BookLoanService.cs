@@ -88,15 +88,32 @@ namespace Biblioteca.Application.Services
             return MapToDto(bookLoan);
         }
 
-        public async Task<IReadOnlyList<BookLoanDto>> ListAsync(
+        public async Task<PagedResult<BookLoanDto>> ListAsync(
+            PagedRequest request,
             CancellationToken cancellationToken)
         {
-            var bookLoans = await _bookLoanRepository.ListAsync(cancellationToken);
+            var page = request.Page <= 0 ? 1 : request.Page;
+            var pageSize = request.PageSize <= 0 ? 10 : request.PageSize;
 
-            return bookLoans
-                .Select(MapToDto)
-                .ToList();
-        }
+            if (pageSize > 100)
+                pageSize = 100;
+
+            var totalItems = await _bookLoanRepository.CountAsync(cancellationToken);
+
+            var bookLoans = await _bookLoanRepository.ListAsync(
+                page,
+                pageSize,
+                cancellationToken);
+
+            return new PagedResult<BookLoanDto>
+            {
+                Items = bookLoans.Select(MapToDto).ToList(),
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize)
+            };
+        }        
 
         private static BookLoanDto MapToDto(BookLoan bookLoan)
         {

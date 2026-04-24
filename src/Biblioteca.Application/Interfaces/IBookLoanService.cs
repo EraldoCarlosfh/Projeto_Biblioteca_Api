@@ -20,7 +20,8 @@ namespace Biblioteca.Application.Interfaces
             Guid loanId,
             CancellationToken cancellationToken);
 
-        Task<IReadOnlyList<BookLoanDto>> ListAsync(
+        Task<PagedResult<BookLoanDto>> ListAsync(
+            PagedRequest request,
             CancellationToken cancellationToken);
     }
 }

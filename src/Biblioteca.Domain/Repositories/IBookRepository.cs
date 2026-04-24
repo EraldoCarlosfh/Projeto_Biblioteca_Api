@@ -10,7 +10,8 @@ namespace Biblioteca.Domain.Repositories
     {
         Task CreateAsync(Book book, CancellationToken cancellationToken);
         Task<Book?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
-        Task<IReadOnlyList<Book>> ListAsync(CancellationToken cancellationToken);
+        Task<IReadOnlyList<Book>> ListAsync(int page, int pageSize, CancellationToken cancellationToken);
+        Task<int> CountAsync(CancellationToken cancellationToken);
         Task SaveChangeAsync(CancellationToken cancellationToken);
     }
 }

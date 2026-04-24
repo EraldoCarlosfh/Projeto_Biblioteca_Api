@@ -3,7 +3,6 @@ using Biblioteca.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -48,10 +47,10 @@ namespace Biblioteca.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IReadOnlyList<BookDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Listar(CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(PagedResult<BookDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> List([FromQuery] PagedRequest request, CancellationToken cancellationToken)
         {
-            var books = await _bookService.ListAsync(cancellationToken);
+            var books = await _bookService.ListAsync(request, cancellationToken);
 
             return Ok(books);
         }

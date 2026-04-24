@@ -4,7 +4,6 @@ using Biblioteca.Domain.Entities;
 using Biblioteca.Domain.Exceptions;
 using Biblioteca.Domain.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,14 +48,31 @@ namespace Biblioteca.Application.Services
             return MapToDto(book);
         }
 
-        public async Task<IReadOnlyList<BookDto>> ListAsync(
+        public async Task<PagedResult<BookDto>> ListAsync(
+            PagedRequest request,
             CancellationToken cancellationToken)
         {
-            var book = await _bookRepository.ListAsync(cancellationToken);
+            var page = request.Page <= 0 ? 1 : request.Page;
+            var pageSize = request.PageSize <= 0 ? 10 : request.PageSize;
 
-            return book
-                .Select(MapToDto)
-                .ToList();
+            if (pageSize > 100)
+                pageSize = 100;
+
+            var totalItems = await _bookRepository.CountAsync(cancellationToken);
+
+            var books = await _bookRepository.ListAsync(
+                page,
+                pageSize,
+                cancellationToken);
+
+            return new PagedResult<BookDto>
+            {
+                Items = books.Select(MapToDto).ToList(),
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize)
+            };
         }
 
         private static BookDto MapToDto(Book book)
