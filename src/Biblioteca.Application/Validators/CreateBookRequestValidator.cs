@@ -21,6 +21,10 @@ namespace Biblioteca.Application.Validators
             RuleFor(x => x.QuantidadeDisponivel)
                 .GreaterThanOrEqualTo(0)
                 .WithMessage("Quantidade disponível não pode ser negativa.");
+
+            RuleFor(x => x.QuantidadeDisponivel)
+                .GreaterThan(0)
+                .WithMessage("Quantidade disponível deve ser maior que zero.");
         }
     }
 }
