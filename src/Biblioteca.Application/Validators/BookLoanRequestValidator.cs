@@ -4,9 +4,9 @@ using System;
 
 namespace Biblioteca.Application.Validators
 {
-    internal class LoanRequestValidator : AbstractValidator<LoanRequest>
+    internal class BookLoanRequestValidator : AbstractValidator<BookLoanRequest>
     {
-        public LoanRequestValidator()
+        public BookLoanRequestValidator()
         {
             RuleFor(x => x.LivroId)
                 .NotEqual(Guid.Empty);

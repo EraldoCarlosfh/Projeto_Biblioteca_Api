@@ -16,8 +16,8 @@ namespace Biblioteca.Domain.Entities
         public Book(string titulo, string autor, int anoPublicacao, int quantidadeDisponivel)
         {
             Id = Guid.NewGuid();
-            DefinirTitulo(titulo);
-            DefinirAutor(autor);
+            SetTitle(titulo);
+            SetAuthor(autor);
 
             if (quantidadeDisponivel < 0)
                 throw new DomainException("Quantidade disponível não pode ser negativa.");
@@ -26,7 +26,7 @@ namespace Biblioteca.Domain.Entities
             QuantidadeDisponivel = quantidadeDisponivel;
         }
 
-        public void RealizarEmprestimo()
+        public void PickBook()
         {
             if (QuantidadeDisponivel <= 0)
                 throw new DomainException("Não há exemplares disponíveis para empréstimo.");
@@ -34,25 +34,25 @@ namespace Biblioteca.Domain.Entities
             QuantidadeDisponivel--;
         }
 
-        public void RealizarDevolucao()
+        public void DeliverBook()
         {
             QuantidadeDisponivel++;
         }
 
-        private void DefinirTitulo(string titulo)
+        private void SetTitle(string title)
         {
-            if (string.IsNullOrWhiteSpace(titulo))
+            if (string.IsNullOrWhiteSpace(title))
                 throw new DomainException("Título é obrigatório.");
 
-            Titulo = titulo.Trim();
+            Titulo = title.Trim();
         }
 
-        private void DefinirAutor(string autor)
+        private void SetAuthor(string author)
         {
-            if (string.IsNullOrWhiteSpace(autor))
+            if (string.IsNullOrWhiteSpace(author))
                 throw new DomainException("Autor é obrigatório.");
 
-            Autor = autor.Trim();
+            Autor = author.Trim();
         }
     }
 }

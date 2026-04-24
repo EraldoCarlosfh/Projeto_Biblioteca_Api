@@ -7,9 +7,9 @@ namespace Biblioteca.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class LibraryController : ControllerBase
+    public class BookController : ControllerBase
     {       
-        public LibraryController()
+        public BookController()
         {
 
         }
