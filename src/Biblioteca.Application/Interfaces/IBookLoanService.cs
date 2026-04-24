@@ -12,6 +12,10 @@ namespace Biblioteca.Application.Interfaces
         BookLoanRequest request,
         CancellationToken cancellationToken);
 
+        Task<BookLoanDto> GetByIdAsync(
+        Guid loanId,
+        CancellationToken cancellationToken);
+
         Task<BookLoanDto> DeliverAsync(
             Guid loanId,
             CancellationToken cancellationToken);

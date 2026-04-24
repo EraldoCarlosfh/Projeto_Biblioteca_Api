@@ -48,6 +48,20 @@ namespace Biblioteca.Application.Services
             return MapToDto(bookLoan);
         }
 
+        public async Task<BookLoanDto> GetByIdAsync(
+            Guid bookLoanId,
+            CancellationToken cancellationToken)
+        {
+            var bookLoan = await _bookLoanRepository.GetByIdAsync(
+                bookLoanId,
+                cancellationToken);
+
+            if (bookLoan is null)
+                throw new NotFoundException("Empréstimo não encontrado.");
+
+            return MapToDto(bookLoan);
+        }
+
         public async Task<BookLoanDto> DeliverAsync(
             Guid bookLoanId,
             CancellationToken cancellationToken)

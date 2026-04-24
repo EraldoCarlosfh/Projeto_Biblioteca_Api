@@ -70,12 +70,7 @@ namespace Biblioteca.Api.Controllers
             Guid id,
             CancellationToken cancellationToken)
         {
-            var bookLoans = await _bookLoanService.ListAsync(cancellationToken);
-
-            var bookLoan = bookLoans.FirstOrDefault(x => x.Id == id);
-
-            if (bookLoan is null)
-                return NotFound(new { message = "Empréstimo não encontrado." });
+            var bookLoan = await _bookLoanService.GetByIdAsync(id, cancellationToken);
 
             return Ok(bookLoan);
         }
