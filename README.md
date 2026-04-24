@@ -1,4 +1,4 @@
-# 📚 Biblioteca Comunitária API
+# Biblioteca Comunitária API
 
 API desenvolvida em **.NET 5** para gestão de **livros** e **empréstimos** em bibliotecas comunitárias.
 
@@ -6,7 +6,7 @@ O projeto segue princípios de **Domain-Driven Design (DDD)**, com separação c
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * .NET 5
 * ASP.NET Core Web API
@@ -17,7 +17,7 @@ O projeto segue princípios de **Domain-Driven Design (DDD)**, com separação c
 
 ---
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 O projeto foi estruturado seguindo boas práticas de separação de responsabilidades:
 
@@ -33,7 +33,7 @@ tests/
  └── Biblioteca.IntegrationTests
 ```
 
-### 📌 Camadas
+### Camadas
 
 * **Domain** → contém entidades e regras de negócio
 * **Application** → orquestra os casos de uso
@@ -42,7 +42,7 @@ tests/
 
 ---
 
-## 📖 Regras de Negócio
+## Regras de Negócio
 
 ### Livro
 
@@ -58,9 +58,9 @@ tests/
 
 ---
 
-## 🌐 Endpoints
+## Endpoints
 
-### 📚 Livros
+### Livros
 
 | Método | Endpoint         |
 | ------ | ---------------- |
@@ -70,7 +70,7 @@ tests/
 
 ---
 
-### 🔄 Empréstimos
+### Empréstimos
 
 | Método | Endpoint                        |
 | ------ | ------------------------------- |
@@ -81,12 +81,12 @@ tests/
 
 ---
 
-## ▶️ Como Executar o Projeto
+## Como Executar o Projeto
 
 ### 1. Clonar o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/EraldoCarlosfh/Projeto_Biblioteca_Api
 cd biblioteca
 ```
 
@@ -122,9 +122,7 @@ Exemplo:
 
 ```bash
 dotnet tool run dotnet-ef ou 
-dotnet ef database update \
---project src/Biblioteca.Infrastructure \
---startup-project src/Biblioteca.Api
+dotnet ef database update --project src/Biblioteca.Infrastructure --startup-project src/Biblioteca.Api
 ```
 
 ---
@@ -140,12 +138,12 @@ dotnet run --project src/Biblioteca.Api
 ### 6. Acessar Swagger
 
 ```text
-https://localhost:xxxx/swagger
+https://localhost:5291/swagger/index.html
 ```
 
 ---
 
-## 🧪 Como Testar a API
+## Testando a API
 
 ### Criar Livro
 
@@ -186,7 +184,7 @@ PATCH /api/emprestimos/{id}/devolucao
 
 ---
 
-## ⚙️ Tratamento de Erros
+## Tratamento de Erros
 
 A API possui middleware global para tratamento de exceções.
 
@@ -203,7 +201,7 @@ Exemplo de resposta:
 
 ---
 
-## 🧠 Decisões Técnicas
+## Decisões Técnicas
 
 * Utilização de **DDD pragmático** para separar responsabilidades
 * **Domínio rico**, com regras dentro das entidades
@@ -214,7 +212,7 @@ Exemplo de resposta:
 
 ---
 
-## 📌 Pontos de Evolução
+## Pontos de Evolução
 
 * Logging estruturado
 * Autenticação e autorização
