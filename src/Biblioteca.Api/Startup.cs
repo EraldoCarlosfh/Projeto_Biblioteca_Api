@@ -1,3 +1,4 @@
+using Biblioteca.Api.Extensions;
 using Biblioteca.Application.DependencyInjection;
 using Biblioteca.Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -20,35 +21,19 @@ namespace Biblioteca.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddInfrastructure(Configuration);
-            services.AddApplication();
-
-            // Configuração do Swagger
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "API Livros",
-                    Version = "v1"
-                });
-            });
+            services.AddApiConfiguration(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Livros v1"));
-            }
-
-            app.UseHttpsRedirection();
-
+            app.UseGlobalExceptionHandler();
+           
             app.UseRouting();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Livros v1"));
+
+            app.UseHttpsRedirection();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

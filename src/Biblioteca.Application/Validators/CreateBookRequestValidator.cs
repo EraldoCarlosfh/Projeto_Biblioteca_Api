@@ -8,18 +8,19 @@ namespace Biblioteca.Application.Validators
         public CreateBookRequestValidator()
         {
             RuleFor(x => x.Titulo)
-                .NotEmpty()
-                .MaximumLength(200);
+           .NotEmpty().WithMessage("Título é obrigatório.")
+           .MaximumLength(200);
 
             RuleFor(x => x.Autor)
-                .NotEmpty()
+                .NotEmpty().WithMessage("Autor é obrigatório.")
                 .MaximumLength(150);
 
             RuleFor(x => x.AnoPublicacao)
-                .GreaterThan(0);
+                .GreaterThan(0).WithMessage("Ano de publicação inválido.");
 
             RuleFor(x => x.QuantidadeDisponivel)
-                .GreaterThanOrEqualTo(0);
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("Quantidade disponível não pode ser negativa.");
         }
     }
 }
