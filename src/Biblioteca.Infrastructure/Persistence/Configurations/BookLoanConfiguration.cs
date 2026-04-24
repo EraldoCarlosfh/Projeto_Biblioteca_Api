@@ -13,28 +13,28 @@ namespace Biblioteca.Infrastructure.Persistence.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
-                .HasColumnName("id");
+                   .HasColumnName("id");
 
             builder.Property(x => x.LivroId)
-                .HasColumnName("livro_id")
-                .IsRequired();
+                   .HasColumnName("livro_id")
+                   .IsRequired();
 
             builder.Property(x => x.DataEmprestimo)
-                .HasColumnName("data_emprestimo")
-                .IsRequired();
+                   .HasColumnName("data_emprestimo")
+                   .IsRequired();
 
             builder.Property(x => x.DataDevolucao)
-                .HasColumnName("data_devolucao");
+                   .HasColumnName("data_devolucao");
 
             builder.Property(x => x.Status)
-                .HasColumnName("status")
-                .HasConversion<int>()
-                .IsRequired();
+                   .HasColumnName("status")
+                   .HasConversion<int>()
+                   .IsRequired();
 
-            builder.HasOne<Book>()
-                .WithMany()
-                .HasForeignKey(x => x.LivroId)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Livro)
+                   .WithMany()
+                   .HasForeignKey(x => x.LivroId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

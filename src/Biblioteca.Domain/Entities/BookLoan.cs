@@ -1,17 +1,16 @@
 ﻿using Biblioteca.Domain.Enums;
 using Biblioteca.Domain.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Biblioteca.Domain.Entities
 { 
     public class BookLoan
     {
         public Guid Id { get; private set; }
+
+        public Book? Livro { get; private set; }
         public Guid LivroId { get; private set; }
+
         public DateTime DataEmprestimo { get; private set; }
         public DateTime? DataDevolucao { get; private set; }
         public StatusBookEnum Status { get; private set; }

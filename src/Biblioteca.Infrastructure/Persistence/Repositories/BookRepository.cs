@@ -23,7 +23,8 @@ namespace Biblioteca.Infrastructure.Persistence.Repositories
         Book book,
         CancellationToken cancellationToken)
         {
-            await _context.Livros.AddAsync(book, cancellationToken);
+            await _context.Livros
+                          .AddAsync(book, cancellationToken);
         }
 
         public async Task<Book?> GetByIdAsync(
@@ -31,12 +32,13 @@ namespace Biblioteca.Infrastructure.Persistence.Repositories
             CancellationToken cancellationToken)
         {
             return await _context.Livros
-                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+                                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
         public async Task<int> CountAsync(CancellationToken cancellationToken)
         {
-            return await _context.Livros.CountAsync(cancellationToken);
+            return await _context.Livros
+                                 .CountAsync(cancellationToken);
         }
 
         public async Task<IReadOnlyList<Book>> ListAsync(
@@ -45,11 +47,11 @@ namespace Biblioteca.Infrastructure.Persistence.Repositories
             CancellationToken cancellationToken)
         {
             return await _context.Livros
-                .AsNoTracking()
-                .OrderBy(x => x.Titulo)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync(cancellationToken);
+                                 .AsNoTracking()
+                                 .OrderBy(x => x.Titulo)
+                                 .Skip((page - 1) * pageSize)
+                                 .Take(pageSize)
+                                 .ToListAsync(cancellationToken);
         }
 
         public async Task SaveChangeAsync(

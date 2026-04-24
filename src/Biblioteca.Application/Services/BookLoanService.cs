@@ -121,6 +121,14 @@ namespace Biblioteca.Application.Services
             {
                 Id = bookLoan.Id,
                 LivroId = bookLoan.LivroId,
+                Livro = bookLoan.Livro is null ? null : new BookDto
+                {
+                    Id = bookLoan.Livro.Id,
+                    Titulo = bookLoan.Livro.Titulo,
+                    Autor = bookLoan.Livro.Autor,
+                    AnoPublicacao = bookLoan.Livro.AnoPublicacao,
+                    QuantidadeDisponivel = bookLoan.Livro.QuantidadeDisponivel
+                },
                 DataEmprestimo = bookLoan.DataEmprestimo,
                 DataDevolucao = bookLoan.DataDevolucao,
                 Status = bookLoan.Status.ToString()

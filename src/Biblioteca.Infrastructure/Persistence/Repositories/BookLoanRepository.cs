@@ -23,7 +23,8 @@ namespace Biblioteca.Infrastructure.Persistence.Repositories
         BookLoan bookLoan,
         CancellationToken cancellationToken)
         {
-            await _context.Emprestimos.AddAsync(bookLoan, cancellationToken);
+            await _context.Emprestimos
+                          .AddAsync(bookLoan, cancellationToken);
         }
 
         public async Task<BookLoan?> GetByIdAsync(
@@ -31,12 +32,14 @@ namespace Biblioteca.Infrastructure.Persistence.Repositories
             CancellationToken cancellationToken)
         {
             return await _context.Emprestimos
-                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+                                 .Include(x => x.Livro)
+                                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
         public async Task<int> CountAsync(CancellationToken cancellationToken)
         {
-            return await _context.Emprestimos.CountAsync(cancellationToken);
+            return await _context.Emprestimos
+                                 .CountAsync(cancellationToken);
         }
 
         public async Task<IReadOnlyList<BookLoan>> ListAsync(
@@ -45,11 +48,12 @@ namespace Biblioteca.Infrastructure.Persistence.Repositories
             CancellationToken cancellationToken)
         {
             return await _context.Emprestimos
-                .AsNoTracking()
-                .OrderByDescending(x => x.DataEmprestimo)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync(cancellationToken);
+                                 .Include(x => x.Livro)
+                                 .AsNoTracking()
+                                 .OrderByDescending(x => x.DataEmprestimo)
+                                 .Skip((page - 1) * pageSize)
+                                 .Take(pageSize)
+                                 .ToListAsync(cancellationToken);
         }
 
         public async Task SaveChangeAsync(
