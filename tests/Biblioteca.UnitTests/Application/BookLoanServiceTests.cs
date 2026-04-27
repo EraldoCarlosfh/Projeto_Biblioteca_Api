@@ -66,7 +66,7 @@ namespace Biblioteca.UnitTests.Application
             };
 
             _bookRepositoryMock
-                .Setup(x => x.GetByIdAsync(request.LivroId, It.IsAny<CancellationToken>()))
+                .Setup(x => x.GetByIdAsync((Guid)request.LivroId, It.IsAny<CancellationToken>()))
                 .ReturnsAsync((Book)null);
 
             Func<Task> act = async () => await _service.PickUpAsync(request, CancellationToken.None);
